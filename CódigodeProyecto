@@ -1,0 +1,375 @@
+package com.mycompany.sistema.de.ahorro.eafit;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+public class ModEntradas {
+    
+    public ModEntradas(){
+        //constructor
+    }
+    
+    public String[] LeerDatos(String datos[]){
+        String nom,id,clave;
+        datos = new String[3];
+        nom=JOptionPane.showInputDialog("Digita tu nombre completo (tal cual lo tienes en Epik)");
+        id=JOptionPane.showInputDialog("Digita tu ID de Epik");
+        clave=JOptionPane.showInputDialog("Digita tu clave de Epik");
+        datos[0]=nom;
+        datos[1]=id;
+        datos[2]=clave;
+        return datos;
+    }
+    
+    public int Tipousuario(int tipo){
+        String [] op1={"Otro","Estudiante","Profesor","Infraestructura"};
+        ImageIcon iconic = new ImageIcon("eafit-logo_png.jpg");
+        tipo=JOptionPane.showOptionDialog(null, "¿Qué tipo de usuario tiene?", "Tipo de Usuario", 0, JOptionPane.QUESTION_MESSAGE, iconic,op1, "Estudiante");
+        return tipo;
+    }
+    
+    public String leersolicitud(String soli){
+        soli=JOptionPane.showInputDialog("Detalla tu solicitud de activación de dispositivos");
+        return soli;
+    }
+    
+    public int elegirSolicitud (int eleccion){
+        String [] op4={"jmancop","amartinezp","juanss2","mperezr3"};
+        ImageIcon iconic = new ImageIcon("Maestria-economia-eafit-becas_jpg.jpg");
+        eleccion=JOptionPane.showOptionDialog(null, "¿Cuál solicitud quiere responder?", "Elegir solicitud", 0, JOptionPane.PLAIN_MESSAGE, iconic,op4, "jmancop");
+        return eleccion;
+    }
+    
+    public int mostrarSolicitud (int eleccion,String[] opcionestu,String solicitud,String[] dispositivos,int disp){
+        if (eleccion==0){
+            disp=0;
+            solicitud="Requiero la activación del dispositivo el día 26/04/2023 desde las 13:00 hasta las 14:00. Debo presentar una conferencia.";
+            ImageIcon iconic = new ImageIcon("usuario.png");
+            JOptionPane.showMessageDialog(null, "El estudiante Juan Manco Posada con usuario "+opcionestu[eleccion]+" solicita la activación del dispositivo: "+dispositivos[disp], "Información de la solicitud" , JOptionPane.PLAIN_MESSAGE, iconic);
+            JOptionPane.showMessageDialog(null, "El estudiante indica: "+solicitud , "Descripción del Estudiante", JOptionPane.PLAIN_MESSAGE, iconic);
+        }else{
+            if (eleccion==1){
+                disp=1;
+                solicitud="Requiero la activación del dispositivo el día 26/04/2023 desde las 14:00 hasta las 16:00. Tengo reunión con miembros de la OE.";
+                ImageIcon iconic = new ImageIcon("usuario.png");
+                JOptionPane.showMessageDialog(null, "El estudiante Alejandro Martínez Pérez con usuario "+opcionestu[eleccion]+" solicita la activación del dispositivo: "+dispositivos[disp], "Información de la solicitud" , JOptionPane.PLAIN_MESSAGE, iconic);
+                JOptionPane.showMessageDialog(null, "El estudiante indica: "+solicitud , "Descripción del Estudiante", JOptionPane.PLAIN_MESSAGE, iconic);
+            }else{
+                if (eleccion==2){
+                    disp=2;
+                    solicitud="Requiero la activación del dispositivo el día 26/04/2023 desde las 8:00 hasta las 10:00. Tengo que realizar un trabajo allí.";
+                    ImageIcon iconic = new ImageIcon("usuario.png");
+                    JOptionPane.showMessageDialog(null, "El estudiante Juan Sebastián Salas con usuario "+opcionestu[eleccion]+" solicita la activación del dispositivo: "+dispositivos[disp], "Información de la solicitud" , JOptionPane.PLAIN_MESSAGE, iconic);
+                    JOptionPane.showMessageDialog(null, "El estudiante indica: "+solicitud , "Descripción del Estudiante", JOptionPane.PLAIN_MESSAGE, iconic);
+                }else{
+                    if (eleccion==3){
+                        disp=3;
+                        solicitud="Requiero la activación del dispositivo el día 26/04/2023 desde las 9:00 hasta las 11:00. Lo necesito para mi semillero.";
+                        ImageIcon iconic = new ImageIcon("usuario.png");
+                        JOptionPane.showMessageDialog(null, "El estudiante Marcelo Pérez Gómez con usuario "+opcionestu[eleccion]+" solicita la activación del dispositivo: "+dispositivos[disp], "Información de la solicitud" , JOptionPane.PLAIN_MESSAGE, iconic);
+                        JOptionPane.showMessageDialog(null, "El estudiante indica: "+solicitud , "Descripción del Estudiante", JOptionPane.PLAIN_MESSAGE, iconic);
+                    }
+                }
+            }
+        }
+        return disp;
+    }
+    
+    public int leerRespuesta(int resp){
+        String [] op3={"APROBAR","DENEGAR"};
+        ImageIcon iconic = new ImageIcon("descargar.jpg");
+        resp=JOptionPane.showOptionDialog(null, "¿Deniega o acepta la solicitud?", "Responder a la solicitud", 0, JOptionPane.QUESTION_MESSAGE, iconic,op3, "APROBAR");
+        return resp;
+    }
+    
+    public int leerdispositivo(int disp){
+        String [] disps={"Luces auditorio 38-110","Proyector 29-203","Computador 1 19-414","Computador 12 01-404"};
+        ImageIcon iconic = new ImageIcon("165_jpg.jpg");
+        disp=JOptionPane.showOptionDialog(null, "¿Qué dispositivo requiere?", "Selección de dispositivo", 0, JOptionPane.QUESTION_MESSAGE, iconic,disps, "Luces auditorio 38-110");
+        return disp;
+    }
+    
+    public int leerRespuestaInfra(int resp){
+        String [] op5={"Visualizar datos personales","Visualizar lista de activaciones"};
+        ImageIcon iconic = new ImageIcon("descargar.jpg");
+        resp=JOptionPane.showOptionDialog(null, "¿Qué quiere hacer hoy?", "Elección de proceso-Infraestructura", 0, JOptionPane.QUESTION_MESSAGE, iconic,op5, "Visualizar datos personales");
+        return resp;
+    }
+}
+
+
+
+
+
+package com.mycompany.sistema.de.ahorro.eafit;
+public class ModProcesos {
+    public ModProcesos(){
+        //constructor
+    }
+    
+    public boolean verificarDatosPersonales (String nom,String id,String clave,int tipo){
+        boolean verif=true;
+        //verificación en base de datos
+        if (nom.equals(null)||id.equals(null)||clave.equals(null)||nom.equals("")||id.equals("")||clave.equals("")){
+            verif=false;
+        }
+        return verif;
+    }
+    
+    public String buscarSensor (int disp){
+        String sensor;
+        sensor="";
+        if (disp==0){
+            sensor="SensorAUD38110";
+        }else{
+            if (disp==1){
+                sensor="SensorPROY29203";
+            }else{
+                if (disp==2){
+                    sensor="SensorCOMP119414";
+                }else{
+                    if (disp==3){
+                        sensor="SensorCOMP1201404";
+                    }
+                }
+            }
+        }
+        return sensor;
+    }
+    
+    public boolean encenderDispositivo(String nomusuario,String dispnom, String sensor, String solicitud,int respuesta){
+        boolean result = true;
+        if (respuesta==0){
+            result=true;
+        }else{
+            if (respuesta==1){
+                result=false;
+            }
+        }
+        return result;
+    }
+}
+
+
+
+
+
+
+package com.mycompany.sistema.de.ahorro.eafit;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.util.ArrayList;
+public class ModSalidas {
+    
+    public ModSalidas(){
+        //constructor
+    }
+    
+    public void imprimirRespuesta(String nomdisp,String nomusuario, boolean resp){
+        ImageIcon iconic = new ImageIcon("256x256bb.jpg");
+        if (resp==true){
+            JOptionPane.showMessageDialog(null,nomusuario+", tu solicitud fue aceptada por un profesor/administrativo. Se activó el dispositivo "+nomdisp+" correctamente. Gracias por usar nuestro sistema, vuelva pronto.", "Activación permitida", JOptionPane.PLAIN_MESSAGE, iconic); 
+        }else{
+            if (resp==false){
+                JOptionPane.showMessageDialog(null,nomusuario+", tu solicitud fue denegada por un profesor/administrativo, lo sentimos. Gracias por usar nuestro sistema, vuelva pronto.", "Activación denegada", JOptionPane.PLAIN_MESSAGE, iconic);
+            }
+        }
+    }
+    
+    public void imprimirMensajeDeConfirmación (int estuelegido,String[] estu,String nomusuario, boolean resp,String nomdisp){
+        ImageIcon iconic = new ImageIcon("descargar.jpg");
+        if (resp==true){
+            JOptionPane.showMessageDialog(null,nomusuario+" tu respuesta fue enviada al estudiante. La activación de "+nomdisp+" fue APROBADA. Gracias por usar nuestro sistema, vuelva pronto.", "Activación permitida", JOptionPane.PLAIN_MESSAGE, iconic);
+        }else{
+            if (resp==false){
+                JOptionPane.showMessageDialog(null,nomusuario+" tu respuesta fue enviada al estudiante. La activación de "+nomdisp+" fue DENEGADA. Gracias por usar nuestro sistema, vuelva pronto.", "Activación denegada", JOptionPane.PLAIN_MESSAGE, iconic);
+            }
+        }
+    }
+    
+    public void ImprimirDatosPersonales (ArrayList<String> listadedatos){
+        ImageIcon iconic = new ImageIcon("blob.png");
+        JOptionPane.showMessageDialog(null, "Existen "+listadedatos.size()+" usuarios a los cuales les puedes revisar sus datos personales", "Usuarios Existentes", 0, iconic);
+        int selec= Integer.parseInt(JOptionPane.showInputDialog(null, "Digita un número del 0 al "+(listadedatos.size()-1)+" para revisar alguno de los "+listadedatos.size()+" usuarios", "Selección usuario", JOptionPane.QUESTION_MESSAGE));
+        JOptionPane.showMessageDialog(null, listadedatos.get(selec), "Mostrardato", 0, iconic);
+    }
+    
+    public void ImprimirListaActivaciones (ArrayList<String> lista){
+        for (int i=0;i<lista.size();i++){
+            ImageIcon iconic = new ImageIcon("descargar.jpg");
+            JOptionPane.showMessageDialog(null, lista.get(i)+"\nPulse OK para ver el siguiente elemento de la lista", "Elemento de la lista #"+(i+1), 0, iconic);
+        }
+    }
+}
+
+
+
+
+
+
+
+package com.mycompany.sistema.de.ahorro.eafit;
+public class ModPersistencia {
+    public ModPersistencia(){
+        //constructor
+    }
+    
+    public String[] almacenarDatosPersonales (String[] arreglo,String nombre,String ID,String[] tipousuarios,int tipousuario){
+        arreglo[0]=nombre;
+        arreglo[1]=ID;
+        String tipousu=tipousuarios[tipousuario];
+        arreglo[2]=tipousu;
+        return arreglo;
+    }
+    
+    public String comprimirDatosP (String [] arreglo){
+        String DatosP="Nombre: "+arreglo[0]+". ID: "+arreglo[1]+". Tipo de usuario: "+arreglo[2]+".";
+        return DatosP;
+    }
+    
+    public String[] almacenarDatosActivación (String[] arreglo,String nombre,String ID,String[] tiposusuarios,int tipousuario,String dispnom, String sensor){
+        
+        arreglo[0]=nombre;
+        arreglo[1]=ID;
+        String tipousu=tiposusuarios[tipousuario];
+        arreglo[2]=tipousu;
+        arreglo[3]=dispnom;
+        arreglo[4]=sensor;
+        return arreglo;
+    }
+    
+    public String comprimirDatos (String[] arreglo){
+        String DatosActivacion = arreglo[0]+" con ID "+arreglo[1]+" y con un usuario de tipo "+arreglo[2]+" se le ha activado "+arreglo[3]+" con el sensor "+arreglo[4];
+        return DatosActivacion;
+    }
+}
+
+
+
+
+
+
+
+
+package com.mycompany.sistema.de.ahorro.eafit;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.util.ArrayList;
+
+public class SistemaDeAhorroEafit {
+    public static void main(String[] args) {
+        
+        ModEntradas conexentradas = new ModEntradas();
+        ModProcesos conexprocesos = new ModProcesos();
+        ModSalidas conexsalidas = new ModSalidas();
+        ModPersistencia conexpersistencia = new ModPersistencia();
+        
+        ImageIcon iconic1 = new ImageIcon("eafit-logo_png.jpg");
+        
+        String nomusuario,idEpik,claveepik,datosper[],solicitud,sensor,dispnom,usuarioeleg,datosprov[],datosprov2,datosp[],datosp2;
+        int tipousuario,disp,cerrar,respuesta,selecsoli,seleccioninfra,seleccionusuario;
+        boolean verificacion,encender;
+        
+        ArrayList<String> listadeactivaciones;
+        listadeactivaciones= new ArrayList<String>();
+        ArrayList<String> listadedatos;
+        listadedatos=new ArrayList<String>();
+        
+        datosprov = new String[5];
+        datosper=new String[3];
+        datosp=new String[3];
+        tipousuario=0;
+        cerrar=1;
+        disp=0;
+        solicitud="";
+        selecsoli=0;
+        respuesta=0;
+        seleccioninfra=0;
+        seleccionusuario=0;
+          
+        String [] disps={"Luces auditorio 38-110","Proyector 29-203","Computador 1 19-414","Computador 12 01-404"};
+        String [] op1={"Otro","Estudiante","Profesor","Infraestructura"};
+        String [] op2={"Salir","Realizar otro proceso"};
+        String [] op3={"APROBAR","DENEGAR"};
+        String [] op4={"jmancop","amartinezp","juanss2","mperezr3"};
+        
+        do{
+            JOptionPane.showMessageDialog(null,"¡Hola!, te doy la bienvenida al Sitema de Ahorro Eafitense (SAE)", "Bienvenida SAE",JOptionPane.PLAIN_MESSAGE,iconic1);
+            datosper=conexentradas.LeerDatos(datosper);
+            nomusuario=datosper[0];
+            idEpik=datosper[1];
+            claveepik=datosper[2];
+            tipousuario=conexentradas.Tipousuario(tipousuario);
+            datosp=conexpersistencia.almacenarDatosPersonales(datosp, nomusuario, idEpik, op1, tipousuario);
+            datosp2=conexpersistencia.comprimirDatosP(datosp);
+            listadedatos.add(datosp2);
+            if (tipousuario==0){
+                JOptionPane.showMessageDialog(null, "No existe un usario de ese estilo en el sistema, intente de nuevo", "Error Tipo Usuario", JOptionPane.ERROR_MESSAGE);
+            }else{
+                if (tipousuario==1){
+                    verificacion=conexprocesos.verificarDatosPersonales(nomusuario, idEpik, claveepik, tipousuario);
+                    if (verificacion==true){
+                        JOptionPane.showMessageDialog(null, "Tus datos fueron verificados exitosamente, bienvenid@", "Verificación exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        if(verificacion==false){
+                            JOptionPane.showMessageDialog(null, "Tus datos no se verificaron, saliendo del sistema...", "Error verificación", JOptionPane.ERROR_MESSAGE);
+                            break;
+                        } 
+                    }
+                    disp=conexentradas.leerdispositivo(disp);
+                    dispnom=disps[disp];
+                    solicitud=conexentradas.leersolicitud(solicitud);
+                    sensor=conexprocesos.buscarSensor(disp);
+                    if (solicitud.equals("")){
+                        JOptionPane.showMessageDialog(null, "No digitaste ninguna solicitud, saliendo del sistema...", "Error solicitud", JOptionPane.ERROR_MESSAGE);
+                        break;
+                    }
+                    encender=conexprocesos.encenderDispositivo(nomusuario, dispnom, sensor, solicitud,0);
+                    conexsalidas.imprimirRespuesta(dispnom, nomusuario, encender);
+                    datosprov=conexpersistencia.almacenarDatosActivación(datosprov, nomusuario, idEpik, op1, tipousuario, dispnom, sensor);
+                    datosprov2=conexpersistencia.comprimirDatos(datosprov);
+                    listadeactivaciones.add(datosprov2);
+                    
+                }else{
+                    if (tipousuario==2){
+                        verificacion=conexprocesos.verificarDatosPersonales(nomusuario, idEpik, claveepik, tipousuario);
+                        if (verificacion==true){
+                            JOptionPane.showMessageDialog(null, "Tus datos fueron verificados exitosamente, bienvenid@", "Verificación exitosa", JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            if(verificacion==false){
+                                JOptionPane.showMessageDialog(null, "Tus datos no se verificaron, saliendo del sistema...", "Error verificación", JOptionPane.ERROR_MESSAGE);
+                                break;
+                            } 
+                        }
+                        selecsoli=conexentradas.elegirSolicitud(selecsoli);
+                        disp=conexentradas.mostrarSolicitud(selecsoli, op4, solicitud, disps, disp);
+                        respuesta=conexentradas.leerRespuesta(respuesta);
+                        sensor=conexprocesos.buscarSensor(disp);
+                        dispnom=disps[disp];
+                        encender=conexprocesos.encenderDispositivo(nomusuario, dispnom, sensor, solicitud, respuesta);
+                        conexsalidas.imprimirMensajeDeConfirmación(selecsoli, op4, nomusuario, encender, dispnom);
+                    }else{
+                       if (tipousuario==3){
+                            verificacion=conexprocesos.verificarDatosPersonales(nomusuario, idEpik, claveepik, tipousuario);
+                            if (verificacion==true){
+                                JOptionPane.showMessageDialog(null, "Tus datos fueron verificados exitosamente, bienvenid@", "Verificación exitosa", JOptionPane.INFORMATION_MESSAGE);
+                            }else{
+                                if(verificacion==false){
+                                    JOptionPane.showMessageDialog(null, "Tus datos no se verificaron, saliendo del sistema...", "Error verificación", JOptionPane.ERROR_MESSAGE);
+                                    break;
+                                } 
+                            }
+                            seleccioninfra=conexentradas.leerRespuestaInfra(seleccioninfra);
+                            if (seleccioninfra==0){
+                                conexsalidas.ImprimirDatosPersonales(listadedatos);
+                            }else{
+                                if (seleccioninfra==1){
+                                    conexsalidas.ImprimirListaActivaciones(listadeactivaciones);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            cerrar=JOptionPane.showOptionDialog(null, "¿Quieres salir?", "Salir", 0, JOptionPane.QUESTION_MESSAGE, iconic1,op2, "Salir");
+        }while (cerrar==1);
+    }
+}
