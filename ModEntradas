@@ -1,0 +1,96 @@
+package com.mycompany.sistema.de.ahorro.eafit;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+public class ModEntradas {
+    
+    public ModEntradas(){
+        //constructor
+    }
+    
+    public String[] LeerDatos(String datos[]){
+        String nom,id,clave;
+        datos = new String[3];
+        nom=JOptionPane.showInputDialog("Digita tu nombre completo (tal cual lo tienes en Epik)");
+        id=JOptionPane.showInputDialog("Digita tu ID de Epik");
+        clave=JOptionPane.showInputDialog("Digita tu clave de Epik");
+        datos[0]=nom;
+        datos[1]=id;
+        datos[2]=clave;
+        return datos;
+    }
+    
+    public int Tipousuario(int tipo){
+        String [] op1={"Otro","Estudiante","Profesor","Infraestructura"};
+        ImageIcon iconic = new ImageIcon("eafit-logo_png.jpg");
+        tipo=JOptionPane.showOptionDialog(null, "¿Qué tipo de usuario tiene?", "Tipo de Usuario", 0, JOptionPane.QUESTION_MESSAGE, iconic,op1, "Estudiante");
+        return tipo;
+    }
+    
+    public String leersolicitud(String soli){
+        soli=JOptionPane.showInputDialog("Detalla tu solicitud de activación de dispositivos");
+        return soli;
+    }
+    
+    public int elegirSolicitud (int eleccion){
+        String [] op4={"jmancop","amartinezp","juanss2","mperezr3"};
+        ImageIcon iconic = new ImageIcon("Maestria-economia-eafit-becas_jpg.jpg");
+        eleccion=JOptionPane.showOptionDialog(null, "¿Cuál solicitud quiere responder?", "Elegir solicitud", 0, JOptionPane.PLAIN_MESSAGE, iconic,op4, "jmancop");
+        return eleccion;
+    }
+    
+    public int mostrarSolicitud (int eleccion,String[] opcionestu,String solicitud,String[] dispositivos,int disp){
+        if (eleccion==0){
+            disp=0;
+            solicitud="Requiero la activación del dispositivo el día 26/04/2023 desde las 13:00 hasta las 14:00. Debo presentar una conferencia.";
+            ImageIcon iconic = new ImageIcon("usuario.png");
+            JOptionPane.showMessageDialog(null, "El estudiante Juan Manco Posada con usuario "+opcionestu[eleccion]+" solicita la activación del dispositivo: "+dispositivos[disp], "Información de la solicitud" , JOptionPane.PLAIN_MESSAGE, iconic);
+            JOptionPane.showMessageDialog(null, "El estudiante indica: "+solicitud , "Descripción del Estudiante", JOptionPane.PLAIN_MESSAGE, iconic);
+        }else{
+            if (eleccion==1){
+                disp=1;
+                solicitud="Requiero la activación del dispositivo el día 26/04/2023 desde las 14:00 hasta las 16:00. Tengo reunión con miembros de la OE.";
+                ImageIcon iconic = new ImageIcon("usuario.png");
+                JOptionPane.showMessageDialog(null, "El estudiante Alejandro Martínez Pérez con usuario "+opcionestu[eleccion]+" solicita la activación del dispositivo: "+dispositivos[disp], "Información de la solicitud" , JOptionPane.PLAIN_MESSAGE, iconic);
+                JOptionPane.showMessageDialog(null, "El estudiante indica: "+solicitud , "Descripción del Estudiante", JOptionPane.PLAIN_MESSAGE, iconic);
+            }else{
+                if (eleccion==2){
+                    disp=2;
+                    solicitud="Requiero la activación del dispositivo el día 26/04/2023 desde las 8:00 hasta las 10:00. Tengo que realizar un trabajo allí.";
+                    ImageIcon iconic = new ImageIcon("usuario.png");
+                    JOptionPane.showMessageDialog(null, "El estudiante Juan Sebastián Salas con usuario "+opcionestu[eleccion]+" solicita la activación del dispositivo: "+dispositivos[disp], "Información de la solicitud" , JOptionPane.PLAIN_MESSAGE, iconic);
+                    JOptionPane.showMessageDialog(null, "El estudiante indica: "+solicitud , "Descripción del Estudiante", JOptionPane.PLAIN_MESSAGE, iconic);
+                }else{
+                    if (eleccion==3){
+                        disp=3;
+                        solicitud="Requiero la activación del dispositivo el día 26/04/2023 desde las 9:00 hasta las 11:00. Lo necesito para mi semillero.";
+                        ImageIcon iconic = new ImageIcon("usuario.png");
+                        JOptionPane.showMessageDialog(null, "El estudiante Marcelo Pérez Gómez con usuario "+opcionestu[eleccion]+" solicita la activación del dispositivo: "+dispositivos[disp], "Información de la solicitud" , JOptionPane.PLAIN_MESSAGE, iconic);
+                        JOptionPane.showMessageDialog(null, "El estudiante indica: "+solicitud , "Descripción del Estudiante", JOptionPane.PLAIN_MESSAGE, iconic);
+                    }
+                }
+            }
+        }
+        return disp;
+    }
+    
+    public int leerRespuesta(int resp){
+        String [] op3={"APROBAR","DENEGAR"};
+        ImageIcon iconic = new ImageIcon("descargar.jpg");
+        resp=JOptionPane.showOptionDialog(null, "¿Deniega o acepta la solicitud?", "Responder a la solicitud", 0, JOptionPane.QUESTION_MESSAGE, iconic,op3, "APROBAR");
+        return resp;
+    }
+    
+    public int leerdispositivo(int disp){
+        String [] disps={"Luces auditorio 38-110","Proyector 29-203","Computador 1 19-414","Computador 12 01-404"};
+        ImageIcon iconic = new ImageIcon("165_jpg.jpg");
+        disp=JOptionPane.showOptionDialog(null, "¿Qué dispositivo requiere?", "Selección de dispositivo", 0, JOptionPane.QUESTION_MESSAGE, iconic,disps, "Luces auditorio 38-110");
+        return disp;
+    }
+    
+    public int leerRespuestaInfra(int resp){
+        String [] op5={"Visualizar datos personales","Visualizar lista de activaciones"};
+        ImageIcon iconic = new ImageIcon("descargar.jpg");
+        resp=JOptionPane.showOptionDialog(null, "¿Qué quiere hacer hoy?", "Elección de proceso-Infraestructura", 0, JOptionPane.QUESTION_MESSAGE, iconic,op5, "Visualizar datos personales");
+        return resp;
+    }
+}
