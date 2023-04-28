@@ -1,0 +1,35 @@
+package com.mycompany.sistema.de.ahorro.eafit;
+public class ModPersistencia {
+    public ModPersistencia(){
+        //constructor
+    }
+    
+    public String[] almacenarDatosPersonales (String[] arreglo,String nombre,String ID,String[] tipousuarios,int tipousuario){
+        arreglo[0]=nombre;
+        arreglo[1]=ID;
+        String tipousu=tipousuarios[tipousuario];
+        arreglo[2]=tipousu;
+        return arreglo;
+    }
+    
+    public String comprimirDatosP (String [] arreglo){
+        String DatosP="Nombre: "+arreglo[0]+". ID: "+arreglo[1]+". Tipo de usuario: "+arreglo[2]+".";
+        return DatosP;
+    }
+    
+    public String[] almacenarDatosActivación (String[] arreglo,String nombre,String ID,String[] tiposusuarios,int tipousuario,String dispnom, String sensor){
+        
+        arreglo[0]=nombre;
+        arreglo[1]=ID;
+        String tipousu=tiposusuarios[tipousuario];
+        arreglo[2]=tipousu;
+        arreglo[3]=dispnom;
+        arreglo[4]=sensor;
+        return arreglo;
+    }
+    
+    public String comprimirDatos (String[] arreglo){
+        String DatosActivacion = arreglo[0]+" con ID "+arreglo[1]+" y con un usuario de tipo "+arreglo[2]+" se le ha activado "+arreglo[3]+" con el sensor "+arreglo[4];
+        return DatosActivacion;
+    }
+}
