@@ -1,0 +1,46 @@
+package com.mycompany.sistema.de.ahorro.eafit;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.util.ArrayList;
+public class ModSalidas {
+    
+    public ModSalidas(){
+        //constructor
+    }
+    
+    public void imprimirRespuesta(String nomdisp,String nomusuario, boolean resp){
+        ImageIcon iconic = new ImageIcon("256x256bb.jpg");
+        if (resp==true){
+            JOptionPane.showMessageDialog(null,nomusuario+", tu solicitud fue aceptada por un profesor/administrativo. Se activó el dispositivo "+nomdisp+" correctamente. Gracias por usar nuestro sistema, vuelva pronto.", "Activación permitida", JOptionPane.PLAIN_MESSAGE, iconic); 
+        }else{
+            if (resp==false){
+                JOptionPane.showMessageDialog(null,nomusuario+", tu solicitud fue denegada por un profesor/administrativo, lo sentimos. Gracias por usar nuestro sistema, vuelva pronto.", "Activación denegada", JOptionPane.PLAIN_MESSAGE, iconic);
+            }
+        }
+    }
+    
+    public void imprimirMensajeDeConfirmación (int estuelegido,String[] estu,String nomusuario, boolean resp,String nomdisp){
+        ImageIcon iconic = new ImageIcon("descargar.jpg");
+        if (resp==true){
+            JOptionPane.showMessageDialog(null,nomusuario+" tu respuesta fue enviada al estudiante. La activación de "+nomdisp+" fue APROBADA. Gracias por usar nuestro sistema, vuelva pronto.", "Activación permitida", JOptionPane.PLAIN_MESSAGE, iconic);
+        }else{
+            if (resp==false){
+                JOptionPane.showMessageDialog(null,nomusuario+" tu respuesta fue enviada al estudiante. La activación de "+nomdisp+" fue DENEGADA. Gracias por usar nuestro sistema, vuelva pronto.", "Activación denegada", JOptionPane.PLAIN_MESSAGE, iconic);
+            }
+        }
+    }
+    
+    public void ImprimirDatosPersonales (ArrayList<String> listadedatos){
+        ImageIcon iconic = new ImageIcon("blob.png");
+        JOptionPane.showMessageDialog(null, "Existen "+listadedatos.size()+" usuarios a los cuales les puedes revisar sus datos personales", "Usuarios Existentes", 0, iconic);
+        int selec= Integer.parseInt(JOptionPane.showInputDialog(null, "Digita un número del 0 al "+(listadedatos.size()-1)+" para revisar alguno de los "+listadedatos.size()+" usuarios", "Selección usuario", JOptionPane.QUESTION_MESSAGE));
+        JOptionPane.showMessageDialog(null, listadedatos.get(selec), "Mostrardato", 0, iconic);
+    }
+    
+    public void ImprimirListaActivaciones (ArrayList<String> lista){
+        for (int i=0;i<lista.size();i++){
+            ImageIcon iconic = new ImageIcon("descargar.jpg");
+            JOptionPane.showMessageDialog(null, lista.get(i)+"\nPulse OK para ver el siguiente elemento de la lista", "Elemento de la lista #"+(i+1), 0, iconic);
+        }
+    }
+}
