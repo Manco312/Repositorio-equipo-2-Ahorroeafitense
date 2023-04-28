@@ -1,0 +1,48 @@
+package com.mycompany.sistema.de.ahorro.eafit;
+public class ModProcesos {
+    public ModProcesos(){
+        //constructor
+    }
+    
+    public boolean verificarDatosPersonales (String nom,String id,String clave,int tipo){
+        boolean verif=true;
+        //verificación en base de datos
+        if (nom.equals(null)||id.equals(null)||clave.equals(null)||nom.equals("")||id.equals("")||clave.equals("")){
+            verif=false;
+        }
+        return verif;
+    }
+    
+    public String buscarSensor (int disp){
+        String sensor;
+        sensor="";
+        if (disp==0){
+            sensor="SensorAUD38110";
+        }else{
+            if (disp==1){
+                sensor="SensorPROY29203";
+            }else{
+                if (disp==2){
+                    sensor="SensorCOMP119414";
+                }else{
+                    if (disp==3){
+                        sensor="SensorCOMP1201404";
+                    }
+                }
+            }
+        }
+        return sensor;
+    }
+    
+    public boolean encenderDispositivo(String nomusuario,String dispnom, String sensor, String solicitud,int respuesta){
+        boolean result = true;
+        if (respuesta==0){
+            result=true;
+        }else{
+            if (respuesta==1){
+                result=false;
+            }
+        }
+        return result;
+    }
+}
